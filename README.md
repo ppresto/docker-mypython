@@ -18,7 +18,7 @@ Use a bash function to simplify starting your docker container.  Review setEnv.s
 ```
 source setEnv.sh
 mypython bash
-cd /root/Projects/python/myproject
+cd <your python project dir>
 pipenv --python python3.7 install flask python-dotenv psycopg2-binary Flask-SQLAlchemy
 pipenv shell
 ```
@@ -28,7 +28,7 @@ You can use any PostgreSQL DB you have a route to or run on locally by following
 
 Make sure you have docker installed and access to the internet.  The db_setup.sh script will ask you to set db $POSTGRES_USER / $POSTGRES_PASSWORD, and defaults the $POSTGRES_DB='sample'.  It will import 1000 rows of sample data and setup the container to list on ports 80 and 5432
 ```
-cd docker/scripts
+cd mypython
 ./db_setup.sh
 ```
 The db_setup.sh script can install docker on CentOS if required.  I have commented this secton out assuming this prereq is already in place for your environment.
