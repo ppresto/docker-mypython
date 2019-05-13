@@ -5,10 +5,11 @@ POSTGRES_PASSWORD='demopassword'
 
 # mypython bash
 mypython() {
-  docker run -it --rm --name tmp-python \
+  timestamp=$(date +"%M%H%S")
+  docker run -it --rm --name tmp-python-${timestamp} \
     -p 3000:3000 \
     -v $HOME:/root \
-    -v $HOME/Projects/DevOps/python/dev:/root/bin \
+    -v $HOME/Projects/DevOps/python/dev:/root/dev \
     -e "PATH=${PATH}:/root/bin" \
     ppresto/python3.7 "$@"
 }
