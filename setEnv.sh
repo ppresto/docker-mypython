@@ -17,10 +17,10 @@ mypython() {
 #runpostgres
 runpostgres() {
   docker run -d --name postgres \
-    --name postgres \
+    --name notesdb \
     -e POSTGRES_USER=$POSTGRES_USER \
     -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
-    -e POSTGRES_DB=sample \
+    -e POSTGRES_DB=notes \
     -p 80:5432 \
     -p 5432:5432 \
     --restart always \

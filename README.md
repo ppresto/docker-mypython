@@ -3,6 +3,17 @@ mypython
 
 Python 3.7 Docker Env with local PostgreSQL
 
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Pre Reqs](#pre-reqs)
+- [Setup Python 3.7 Docker Env](#setup-python-37-docker-env)
+	- [Training](#training)
+- [Setup the sample PostgreSQL DB](#setup-the-sample-postgresql-db)
+	- [Setup or add a local PostgreSQL DB from a dump.](#setup-or-add-a-local-postgresql-db-from-a-dump)
+	- [Exporting a dump from the remote DB if not available.](#exporting-a-dump-from-the-remote-db-if-not-available)
+
+<!-- /TOC -->
+
 # Pre Reqs
 * Docker installed
 * dockerhub access
@@ -22,6 +33,8 @@ cd <your python project dir>
 pipenv --python python3.7 install flask python-dotenv psycopg2-binary Flask-SQLAlchemy
 pipenv shell
 ```
+## Training
+Refer to ./training directory for python 3.7 basics, classes, and scripts.
 
 # Setup the sample PostgreSQL DB
 You can use any PostgreSQL DB you have a route to or run on locally by following these steps.
@@ -64,9 +77,9 @@ psql postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${MY_IP}:80/<DB_NAME> < <D
 
 1. use pg_dumpall to get roles.
 ```
-pg_dumpall -h $REMOTE_HOST -p 5432 -U ${POSTGRES_USER} -v --roles-only -f "./<DB_NAME>_roles.sql”
+pg_dumpall -h $REMOTE_HOST -p 5432 -U ${POSTGRES_USER} -v --roles-only -f "./${DB_NAME}_roles.sql”
 ```
 2. Use pg_dump to export the db.
 ```
-pgdump -h $REMOTE_HOST -p 5432 -U ${POSTGRES_USER} dbname > ./<DB_NAME>_dump.sql
+pg_dump -h $REMOTE_HOST -p 5432 -U ${POSTGRES_USER} ${DB_NAME} > ./${DB_NAME}_dump.sql
 ```
